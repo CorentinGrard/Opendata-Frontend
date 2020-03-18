@@ -1,0 +1,8 @@
+{
+  "appId": "com.infre.opendata.app",
+  "appName": "Frontend Opendata",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist",
+  "cordova": {}
+}

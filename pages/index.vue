@@ -16,10 +16,10 @@
           <l-tile-layer
             url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
           ></l-tile-layer>
-          <l-layer-group layer-type="overlay" name="GSM" visible=false>
+          <l-layer-group layer-type="overlay" name="GSM">
             <l-geo-json :geojson="$store.state.gsm" :options="options"> </l-geo-json>
           </l-layer-group>
-          <l-layer-group layer-type="overlay" name="Fiber" visible=false> 
+          <l-layer-group layer-type="overlay" name="Fiber"> 
             <l-geo-json :geojson="$store.state.fiber" :options="options"> </l-geo-json>
           </l-layer-group>
         </l-map>
