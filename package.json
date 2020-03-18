@@ -6,7 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt generate && npx cap copy"
+    "build": "nuxt generate && npx cap copy",
+    "android": "npx cap open android",
+    "ios": "npx cap open ios",
+    "electron": "npx cap open electron"
   },
   "dependencies": {
     "@capacitor/android": "^1.5.1",
