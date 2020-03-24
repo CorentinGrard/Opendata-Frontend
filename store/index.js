@@ -60,7 +60,7 @@ export const actions = {
     y,
     z
   }) {
-    if (z >= 13) {
+    if (z >= 16) {
       let response = await this.$axios.get('/fiber/' + x + '/' + y)
       commit('ADD_FIBER', response.data)
     }
