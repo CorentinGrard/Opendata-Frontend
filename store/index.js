@@ -24,7 +24,7 @@ export const mutations = {
   },
   ADD_FIBER(state, list) {
     list.forEach(element => {
-      let existAlready = state.gsm.features.find(value =>
+      let existAlready = state.fiber.features.find(value =>
         value._id === element._id
       )
       if (!existAlready) {
@@ -32,11 +32,11 @@ export const mutations = {
       }
     });
   },
-  TOOGLE_GSM(state) {
-    state.displayGSM = !state.displayGSM
+  CHANGE_GSM(state, bool) {
+    state.displayGSM = bool
   },
-  TOOGLE_FIBER(state) {
-    state.displayFiber = !state.displayFiber
+  CHANGE_FIBER(state, bool) {
+    state.displayFiber = bool
   }
 }
 
@@ -67,12 +67,12 @@ export const actions = {
   },
   toggleGSM({
     commit
-  }) {
-    commit('TOOGLE_GSM')
+  }, bool) {
+    commit('CHANGE_GSM', bool)
   },
   toggleFiber({
     commit
-  }) {
-    commit('TOOGLE_FIBER')
+  }, bool) {
+    commit('CHANGE_FIBER', bool)
   }
 }
