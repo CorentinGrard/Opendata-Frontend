@@ -76,9 +76,24 @@ export default {
     optionsGSM() {
       return {
         pointToLayer: (geoJsonPoint, latlng) => {
+          var color = 'antenna_black.png'
+          console.log(geoJsonPoint.properties.adm_lb_nom)
+          switch(geoJsonPoint.properties.adm_lb_nom){
+            case "ORANGE":
+              color = 'antenna_orange.png'
+              break;
+            case "SFR":
+              color = 'antenna_red.png'
+              break;
+            case "BOUYGUES TELECOM":
+              color = 'antenna_blue.png'
+              break;
+            case 'FREE MOBILE':
+              color = 'antenna_white.png'
+          }
           return this.$L.marker(latlng, {
             icon: this.$L.icon({
-              iconUrl: "antenna.png",
+              iconUrl: color,
               iconSize: [30, 30],
               iconAnchor: [10, 10]
             })
