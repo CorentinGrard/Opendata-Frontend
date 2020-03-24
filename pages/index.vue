@@ -1,52 +1,40 @@
 <template>
-  <v-container>
-    <div id="map-wrap" style="height: 90vh">
-      <client-only>
-        <l-map
-          :zoom="6"
-          :center="center"
-          @update:zoom="zoomUpdated"
-          @update:center="centerUpdated"
-        >
-          <l-control-layers
-            position="topright"
-            :collapsed="false"
-            :sort-layers="true"
-          />
-          <l-tile-layer
-            url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-          ></l-tile-layer>
-          <l-layer-group layer-type="overlay" name="GSM">
-            <l-geo-json :geojson="$store.state.gsm" :options="options"> </l-geo-json>
-          </l-layer-group>
-          <l-layer-group layer-type="overlay" name="Fiber"> 
-            <l-geo-json :geojson="$store.state.fiber" :options="options"> </l-geo-json>
-          </l-layer-group>
-        </l-map>
-      </client-only>
-    </div>
-  </v-container>
+  <div id="map-wrap" style="height: 100vh">
+    <client-only>
+      <l-map
+        :zoom="zoom"
+        :center="[x, y]"
+        @update:zoom="zoomUpdated"
+        @update:center="centerUpdated"
+      >
+        <l-control-layers
+          position="topright"
+          :collapsed="false"
+          :sort-layers="true"
+        />
+        <l-tile-layer
+          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+        ></l-tile-layer>
+        <l-layer-group layer-type="overlay" name="GSM">
+          <l-geo-json :geojson="$store.state.gsm" :options="options">
+          </l-geo-json>
+        </l-layer-group>
+        <l-layer-group layer-type="overlay" name="Fiber">
+          <l-geo-json :geojson="$store.state.fiber" :options="options">
+          </l-geo-json>
+        </l-layer-group>
+      </l-map>
+    </client-only>
+  </div>
 </template>
 
 <script>
 export default {
-  mounted() {},
   data() {
     return {
-      map: null,
-      option: [
-        {
-          name: "GSM",
-          url: "eg"
-        },
-        {
-          name: "Fibre",
-          url: "rest"
-        }
-      ],
       zoom: 6,
-      center: [47, 3],
-      geojson: null
+      x: 47,
+      y: 3
     };
   },
   methods: {
@@ -54,7 +42,9 @@ export default {
       this.zoom = zoom;
     },
     centerUpdated(center) {
-      this.center = center;
+      this.x = center.lat;
+      this.y = center.lng;
+      this.$store.dispatch("getGSM", { x: this.x, y: this.y });
     }
   },
   computed: {

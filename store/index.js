@@ -1,6 +1,12 @@
 export const state = () => ({
-  gsm: [],
-  fiber: [],
+  gsm: {
+    "type": "FeatureCollection",
+    "features": []
+  },
+  fiber: {
+    "type": "FeatureCollection",
+    "features": []
+  },
   displayGSM: true,
   displayFiber: true
 })
@@ -8,21 +14,21 @@ export const state = () => ({
 export const mutations = {
   ADD_GSM(state, list) {
     list.forEach(element => {
-      let existAlready = state.gsm.find(value =>
+      let existAlready = state.gsm.feature.find(value =>
         value._id === element._id
       )
       if (!existAlready) {
-        state.gsm.push(element)
+        state.gsm.features.push(element)
       }
     });
   },
   ADD_FIBER(state, list) {
     list.forEach(element => {
-      let existAlready = state.gsm.find(value =>
+      let existAlready = state.gsm.feature.find(value =>
         value._id === element._id
       )
       if (!existAlready) {
-        state.fiber.push(element)
+        state.fiber.features.push(element)
       }
     });
   },
@@ -47,7 +53,7 @@ export const actions = {
   async getFiber({
     commit
   }) {
-    let response = await this.$axios.get('/fiber/' + y + '/' + x)
+    // let response = await this.$axios.get('/fiber/' + y + '/' + x)
     commit('ADD_FIBER', response.data)
   },
   toggleGSM({
