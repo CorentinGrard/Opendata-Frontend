@@ -1,7 +1,6 @@
 <template>
   <div id="map-wrap" style="height: 100vh">
     <client-only>
-    {{zoom}}
       <l-map
         :zoom="zoom"
         :center="[x, y]"
@@ -16,11 +15,21 @@
         <l-tile-layer
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         ></l-tile-layer>
-        <l-layer-group layer-type="overlay" name="GSM">
+        <l-layer-group
+          layer-type="overlay"
+          name="GSM"
+          :visible="$store.state.displayGSM"
+          @update:visible="displayGSMToggle"
+        >
           <l-geo-json :geojson="$store.state.gsm" :options="optionsGSM">
           </l-geo-json>
         </l-layer-group>
-        <l-layer-group layer-type="overlay" name="Fiber">
+        <l-layer-group
+          layer-type="overlay"
+          name="Fiber"
+          :visible="$store.state.displayFiber"
+          @update:visible="displayFiberToggle"
+        >
           <l-geo-json :geojson="$store.state.fiber" :options="optionsFiber">
           </l-geo-json>
         </l-layer-group>
@@ -39,14 +48,28 @@ export default {
     };
   },
   methods: {
+    displayGSMToggle(bool) {
+      this.$store.dispatch("toggleGSM", bool);
+    },
+    displayFiberToggle(bool) {
+      this.$store.dispatch("toggleFiber", bool);
+    },
     zoomUpdated(zoom) {
       this.zoom = zoom;
     },
     centerUpdated(center) {
       this.x = center.lat;
       this.y = center.lng;
-      this.$store.dispatch("getGSM", { x: this.x, y: this.y, z: this.zoom });
-      this.$store.dispatch("getFiber", { x: this.x, y: this.y, z: this.zoom });
+      if (this.$store.state.displayFiber) {
+        this.$store.dispatch("getFiber", {
+          x: this.x,
+          y: this.y,
+          z: this.zoom
+        });
+      }
+      if (this.$store.state.displayGSM) {
+        this.$store.dispatch("getGSM", { x: this.x, y: this.y, z: this.zoom });
+      }
     }
   },
   computed: {
