@@ -44,7 +44,7 @@ export default {
     centerUpdated(center) {
       this.x = center.lat;
       this.y = center.lng;
-      this.$store.dispatch("getGSM", { x: this.x, y: this.y });
+      this.$store.dispatch("getGSM", { x: this.x, y: this.y, z: this.zoom });
     }
   },
   computed: {
