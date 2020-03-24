@@ -75,6 +75,15 @@ export default {
   computed: {
     optionsGSM() {
       return {
+        pointToLayer: (geoJsonPoint, latlng) => {
+          return this.$L.marker(latlng, {
+            icon: this.$L.icon({
+              iconUrl: "antenna.png",
+              iconSize: [30, 30],
+              iconAnchor: [10, 10]
+            })
+          });
+        },
         onEachFeature: this.onEachFeatureFunctionGSM
       };
     },
@@ -85,7 +94,7 @@ export default {
             feature.properties.id +
             "</div><div>Fournisseur: " +
             feature.properties.adm_lb_nom +
-             "</div><div>Fournisseur: " +
+            "</div><div>Fournisseur: " +
             feature.properties.generation +
             "</div><div>Systeme: " +
             feature.properties.emr_lb_systeme +
@@ -105,7 +114,11 @@ export default {
           "<div>Id: " +
             feature.properties.imb_id +
             "</div><div>Adresse: " +
-            feature.properties.num_voie + " " + feature.properties.type_voie + " " + feature.properties.nom_voie +
+            feature.properties.num_voie +
+            " " +
+            feature.properties.type_voie +
+            " " +
+            feature.properties.nom_voie +
             "</div><div>Etat: " +
             feature.properties.imb_etat +
             "</div><div>Opérateur: " +
