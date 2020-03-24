@@ -1,6 +1,7 @@
 <template>
   <div id="map-wrap" style="height: 100vh">
     <client-only>
+      {{ test}}
       <l-map
         :zoom="zoom"
         :center="[x, y]"
@@ -15,11 +16,19 @@
         <l-tile-layer
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
         ></l-tile-layer>
-        <l-layer-group layer-type="overlay" name="GSM">
+        <l-layer-group
+          layer-type="overlay"
+          name="GSM"
+          :visible="$store.state.displayGSM"
+        >
           <l-geo-json :geojson="$store.state.gsm" :options="options">
           </l-geo-json>
         </l-layer-group>
-        <l-layer-group layer-type="overlay" name="Fiber">
+        <l-layer-group
+          layer-type="overlay"
+          name="Fiber"
+          :visible="$store.state.displayFiber"
+        >
           <l-geo-json :geojson="$store.state.fiber" :options="options">
           </l-geo-json>
         </l-layer-group>
@@ -38,6 +47,12 @@ export default {
     };
   },
   methods: {
+    displayGSMToggle() {
+      this.$store.dispatch('toggleGSM')
+    },
+    displayFiberToggle() {
+      this.$store.dispatch('toggleFiber')
+    },
     zoomUpdated(zoom) {
       this.zoom = zoom;
     },

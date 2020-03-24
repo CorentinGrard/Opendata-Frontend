@@ -70,7 +70,7 @@ export const actions = {
   }) {
     commit('TOOGLE_GSM')
   },
-  toogleFiber({
+  toggleFiber({
     commit
   }) {
     commit('TOOGLE_FIBER')
