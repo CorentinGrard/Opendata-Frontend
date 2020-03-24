@@ -62,6 +62,8 @@ export default {
             feature.properties.id +
             "</div><div>Fournisseur: " +
             feature.properties.adm_lb_nom +
+             "</div><div>Fournisseur: " +
+            feature.properties.generation +
             "</div><div>Systeme: " +
             feature.properties.emr_lb_systeme +
             "</div>",
@@ -79,6 +81,8 @@ export default {
         layer.bindTooltip(
           "<div>Id: " +
             feature.properties.imb_id +
+            "</div><div>Adresse: " +
+            feature.properties.num_voie + " " + feature.properties.type_voie + " " + feature.properties.nom_voie +
             "</div><div>Etat: " +
             feature.properties.imb_etat +
             "</div><div>Opérateur: " +
