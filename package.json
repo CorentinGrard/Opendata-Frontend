@@ -6,14 +6,20 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
+    "build": "nuxt generate && npx cap copy",
+    "android": "npx cap open android",
+    "ios": "npx cap open ios",
+    "electron": "npx cap open electron"
   },
   "dependencies": {
+    "@capacitor/android": "^1.5.1",
+    "@capacitor/cli": "^1.5.1",
+    "@capacitor/core": "^1.5.1",
+    "@capacitor/ios": "^1.5.1",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "@types/leaflet": "^1.5.11",
     "leaflet": "^1.6.0",
     "nuxt": "^2.0.0",
     "nuxt-leaflet": "0.0.21",
