@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt generate && npx cap copy",
+    "build": "nuxt generate",
+    "build_app": "nuxt generate && npx cap copy",
     "android": "npx cap open android",
     "ios": "npx cap open ios",
     "electron": "npx cap open electron"
