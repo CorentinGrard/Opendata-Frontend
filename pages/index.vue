@@ -13,7 +13,7 @@
           :sort-layers="true"
         />
         <l-tile-layer
-          url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
+          url="https://a.tile.openstreetmap.org/{z}/{x}/{y}.png"
         ></l-tile-layer>
         <l-layer-group
           layer-type="overlay"
