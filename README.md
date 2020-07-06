@@ -1,6 +1,6 @@
 # frontend-nuxt
 
-> My superb Nuxt.js project
+> Frontend of the opendata fibre/gsm for a project at the IMT Mines Ales
 
 ## Build Setup
 
@@ -13,10 +13,5 @@ $ npm run dev
 
 # build for production and launch server
 $ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
